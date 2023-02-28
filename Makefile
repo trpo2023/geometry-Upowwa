@@ -1,2 +1,10 @@
+all: maked
+
 maked: maked.c
-	gcc -Wall -o
+	gcc -Wall -Werror -o maked maked.c
+
+clean:
+	rm maked
+
+run:
+	./maked
