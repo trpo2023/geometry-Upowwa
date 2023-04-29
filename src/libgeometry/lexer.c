@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "lexer.h"
-#include "parser.h"
+#include <lexer.h>
+#include <parser.h>
 
 void print_error(int column, int status)
 {

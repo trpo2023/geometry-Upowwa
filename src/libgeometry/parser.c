@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "lexer.h"
-#include "parser.h"
+#include <lexer.h>
+#include <parser.h>
 
 void take_circle(Circle* circle, int* column)
 {

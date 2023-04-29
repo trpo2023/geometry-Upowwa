@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-#include "../libgeometry/lexer.h"
-#include "../libgeometry/parser.h"
+#include <lexer.h>
+#include <parser.h>
 
 int main()
 {
