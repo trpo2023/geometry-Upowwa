@@ -1,2 +1,5 @@
 .geometry-Upowwa
-maked
+*.o
+*.a
+*.d
+bin/geometry
