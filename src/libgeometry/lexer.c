@@ -46,13 +46,10 @@ void delete_all_space(int* column)
         ungetc(curr_ch, stdin);
 }
 
-double get_number(int* column)
+int read_number(char temp[], int* column)
 {
-    char temp[25];
     char ch;
-    int point_count = 0;
-    int i = 0;
-    int minus_count = 0;
+    int point_count = 0, i = 0, minus_count = 0;
 
     delete_all_space(column);
 
@@ -62,14 +59,14 @@ double get_number(int* column)
         if (temp[i] == '.') {
             point_count++;
             if (point_count > 1) {
-                print_error(*column + i + 1, NOT_DOUBLE);
+                return NOT_DOUBLE;
             }
         }
 
         if (temp[i] == '-') {
             minus_count++;
             if (minus_count > 1 || i > 0) {
-                print_error(*column + i + 1, NOT_DOUBLE);
+                return NOT_DOUBLE;
             }
         }
 
@@ -85,22 +82,39 @@ double get_number(int* column)
         }
 
         if (temp[i] == '(') {
-            i++;
-            print_error(*column + i, BACK_BRACE);
+            *column += i + 1;
+            return BACK_BRACE;
         }
 
         if (!isdigit(temp[i]) && temp[i] != '.' && temp[i] != '-') {
-            i++;
-            print_error(*column + i, NOT_DOUBLE);
+            *column += i + 1;
+            return NOT_DOUBLE;
         }
 
         i++;
     }
-
     delete_all_space(column);
-
     *column += i + 1;
-    char* eptr;
-    double number = strtod(temp, &eptr);
-    return number;
+
+    return 0;
+}
+
+double get_number(int* column)
+{
+    char temp[25];
+    delete_all_space(column);
+    int result = read_number(temp, column);
+    switch (result) {
+    case BACK_BRACE:
+        print_error(*column, BACK_BRACE);
+        break;
+    case NOT_DOUBLE:
+        print_error(*column, NOT_DOUBLE);
+        break;
+    default:
+        delete_all_space(column);
+        break;
+    }
+
+    return strtod(temp, NULL);
 }
