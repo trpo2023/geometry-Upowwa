@@ -32,7 +32,7 @@ $(LIB_PATH): $(LIB_OBJECTS)
 	ar rcs $@ $^
 
 $(OBJ_DIR)/%.o: %.c
-	$(CC) $(CFLAGS) $(DEPSFLAGS) -c -o $@ $<
+	$(CC) $(CFLAGS) $(DEPSFLAGS) -c -o $@ $< -lm
 
 .PHONY: clean run
 

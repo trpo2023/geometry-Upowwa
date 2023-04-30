@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
+#include <calculate.h>
 #include <lexer.h>
 #include <parser.h>
 
@@ -34,6 +35,8 @@ void take_circle(Circle* circle, int* column)
 void print_circle(Circle* circle)
 {
     printf("circle(%.2f %.2f, %.2f)\n", circle->x, circle->y, circle->raduis);
+    printf("\tarea: %.4f\n", get_area(*circle));
+    printf("\tperimetr: %.4f\n", get_perimeter(*circle));
 }
 
 int parser()
